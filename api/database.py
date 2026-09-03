@@ -10,9 +10,14 @@ turso_token = os.environ.get("TURSO_AUTH_TOKEN")
 
 if turso_url and turso_token:
     # Vercel / Cloud mode
-    db_url = turso_url.replace("libsql://", "sqlite+libsql://")
-    DATABASE_URL = f"{db_url}/?authToken={turso_token}&secure=true"
-    engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+    DATABASE_URL = turso_url.replace("libsql://", "sqlite+libsql://")
+    engine = create_engine(
+        f"{DATABASE_URL}/?secure=true", 
+        connect_args={
+            "check_same_thread": False, 
+            "auth_token": turso_token
+        }
+    )
 else:
     # Local mode fallback
     DATABASE_URL = f"sqlite:///{DB_PATH}"
