@@ -13,16 +13,16 @@ from dotenv import load_dotenv
 from sqlalchemy import distinct
 from sqlalchemy.orm import Session
 
-from file_extractor import extract_text_from_file
-from graph import run_mock_pipeline
-from schemas import (
+from .file_extractor import extract_text_from_file
+from .graph import run_mock_pipeline
+from .schemas import (
     PracticeRequest, PracticeResponse,
     TestIn, TestOut, TestQuestionOut, MistakeOut, TopicsOut, StreakOut, StreakIn,
     ShortcutRequest, ShortcutResponse,
 )
-import practice_generator
-import models as db_models
-from database import Base, engine, get_db
+from . import practice_generator
+from . import models as db_models
+from .database import Base, engine, get_db
 
 load_dotenv()
 
@@ -351,7 +351,7 @@ def update_streak(streak_in: StreakIn, db: Session = Depends(get_db)):
 @app.post("/api/ai/shortcut-trick", response_model=ShortcutResponse)
 async def generate_shortcut_trick(req: ShortcutRequest):
     try:
-        from llm_setup import get_generation_llm
+        from .llm_setup import get_generation_llm
         llm = get_generation_llm()
         
         prompt = f"""You are an elite competitive exam coach (All India Rank 1 trainer for Quant/Aptitude).

@@ -11,7 +11,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langgraph.graph import StateGraph, START, END
 
-from schemas import MockQuestionList
+from .schemas import MockQuestionList
 
 load_dotenv()
 
