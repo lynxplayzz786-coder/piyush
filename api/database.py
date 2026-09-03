@@ -6,7 +6,10 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "progress.db")
 
 turso_url = os.environ.get("TURSO_DATABASE_URL", "libsql://database-abhishek-ve.aws-ap-south-1.turso.io")
+if turso_url: turso_url = turso_url.strip()
+
 turso_token = os.environ.get("TURSO_AUTH_TOKEN")
+if turso_token: turso_token = turso_token.strip()
 
 if os.environ.get("VERCEL"):
     if not turso_token:
