@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-dotenv
+python-multipart
+langchain
+langchain-groq
+langchain-core
+langgraph
+langchain-text-splitters
+groq
+pydantic
+pdfplumber
+pypdf
+python-docx
+sqlalchemy
+sqlalchemy-libsql
